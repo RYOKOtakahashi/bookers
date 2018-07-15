@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+<body>
+	<%= flash[:notice] %>
+	<div class="show_title">
+		<span>Title:</span>
+		<span> <%= @blog.title %> </span>
+	</div>
+
+	<div class="show_body">
+		<span>Body:</span>
+		<span> <%= @blog.body %> </span>
+	</div>
+
+    <span> <%= link_to "Edit", edit_blog_path(@blog.id), class: "edit_#{@blog.id}" %> </span>
+    <span> | </span>
+    <span> <%= link_to "Back", new_blog_path(@blog.id), class: "back" %> </span>
+    <!-- <a href="http://localhost:3000/blogs/new"> Back </a> -->
+</body>

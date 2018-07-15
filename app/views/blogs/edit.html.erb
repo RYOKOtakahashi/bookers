@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+<body>
+<h1> Editing Book </h1>
+
+<%= form_for(@blog) do |f| %>
+
+    <h4> Title </h4>
+    <%= f.text_field :title %>
+
+    <h4> Body </h4>
+    <%= f.text_area :body %>
+
+    <p class="update_book"> <%= f.submit 'Update Book' %> </p>
+
+<% end %>
+
+    <span> <%= link_to "Show", blog_path(@blog.id), class: "show_#{@blog.id}" %> </span>
+    <span> | </span>
+    <span> <%= link_to "Back", new_blog_path(@blog.id), class: "back" %> </span>
+
+</body>
+
+</html>

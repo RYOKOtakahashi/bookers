@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+<body>
+	<p class=""> </p>
+
+	<h1> Books </h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th> Title </th>
+				<th> Body </th>
+				<th colspan="3"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td> <% @blogs.each do |blog| %>
+					<p><%= blog.title %></p>
+				<% end %> </td>
+
+				<td> <% @blogs.each do |blog| %>
+					<p><%= blog.body %></p>
+				<% end %> </td>
+
+				<td class="show">
+					<% @blogs.each do |blog| %>
+						<p> <%= link_to "Show", blog_path(blog.id), class: "show_#{blog.id}" %> </p>
+				<% end %> </td>
+
+				<td class="edit">
+					<% @blogs.each do |blog| %>
+						<p> <%= link_to "Edit", edit_blog_path(blog), class: "edit_#{blog.id}" %> </p>
+					<% end %>
+				</td>
+
+				<td class="destroy">
+					<% @blogs.each do |blog| %>
+						<p> <%= link_to "Destroy", blog_path(blog), class: "destroy_#{blog.id}", method: :delete, "data-confirm" => "Are you sure ?" %> </p>
+					<% end %>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+
+</body>
+
+	<h2> New book </h2>
+
+
+	<% if @blog.errors.any? %>
+	  <div id="error_explanation" class="alert alert-danger">
+	    <ul>
+	      <% @blog.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+
+	<%= form_for(@blog) do |f| %>
+	    <h4> Title </h4>
+	    <%= f.text_field :title, class:"book_title" %>
+
+	    <h4> Body </h4>
+	    <%= f.text_area :body, class: "book_body" %>
+
+	 	<div>
+	    <%= f.submit 'Create Book' %>
+	 	</div>
+
+	<% end %>
+
+</body>
+</html>
